@@ -23,11 +23,11 @@
                    </div>
                    <div>
                       <p:commandButton value="XLXS" styleClass="p-mr-2 p-mb-2" >
-                          <p:dataExporter type="xlsxstream" target="tblSales" fileName="sales"/>
+                          <p:dataExporter type="xlsxstream" target="tblSales tblPlayers" fileName="grouped"/>
                       </p:commandButton>
 
                       <p:commandButton value="PDF" styleClass="p-mr-2 p-mb-2" >
-                          <p:dataExporter type="pdf" target="tblSales" fileName="sales"/>
+                          <p:dataExporter type="pdf" target="tblSales tblPlayers" fileName="grouped"/>
                       </p:commandButton>
                    </div>
                 </div>
@@ -64,12 +64,12 @@
                     </p:column>
                     <p:column>
                         <h:outputText value="#{sale.lastYearSale}">
-                            <f:convertNumber type="currency" currencySymbol="$"/>
+                            <f:convertNumber type="currency" />
                         </h:outputText>
                     </p:column>
                     <p:column>
                         <h:outputText value="#{sale.thisYearSale}">
-                            <f:convertNumber type="currency" currencySymbol="$"/>
+                            <f:convertNumber type="currency" />
                         </h:outputText>
                     </p:column>
 
