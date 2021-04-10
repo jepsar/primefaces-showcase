@@ -48,7 +48,7 @@
             <div class="card">
                 <h5>Live Resize with Callback</h5>
                 <p:dataTable id="products2" var="product" value="#{dtResizableColumnsView.products2}"
-                             resizableColumns="true" liveResize="true" showGridlines="true">
+                             >
                     <p:ajax event="colResize" update=":form:msgs" listener="#{dtResizableColumnsView.onResize}"/>
 
                     <p:column headerText="Code">
@@ -115,9 +115,20 @@
                     <p:columnGroup type="footer">
                         <p:row>
                             <p:column colspan="3" style="text-align:right" footerText="Totals:"/>
-                            <p:column footerText="$#{dtGroupView.lastYearTotal}"/>
-
-                            <p:column footerText="$#{dtGroupView.thisYearTotal}"/>
+                            <p:column>
+                                <f:facet name="footer">
+                                    <h:outputText value="#{dtGroupView.lastYearTotal}">
+                                        <f:convertNumber type="currency" currencySymbol="$"/>
+                                    </h:outputText>
+                                </f:facet>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="footer">
+                                    <h:outputText value="#{dtGroupView.thisYearTotal}">
+                                        <f:convertNumber type="currency" currencySymbol="$"/>
+                                    </h:outputText>
+                                </f:facet>
+                            </p:column>
                         </p:row>
                     </p:columnGroup>
                 </p:dataTable>

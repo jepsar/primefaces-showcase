@@ -36,7 +36,9 @@
                     </p:column>
 
                     <p:column headerText="Price">
-                        <h:outputText value="$#{product.price}"/>
+                        <h:outputText value="#{product.price}">
+                            <f:convertNumber type="currency" currencySymbol="$"/>
+                        </h:outputText>
                     </p:column>
 
                     <p:column headerText="Category">

@@ -30,7 +30,6 @@ import org.primefaces.showcase.domain.Sale;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -39,15 +38,17 @@ import java.util.Map;
 @Named("dtGroupView")
 @ViewScoped
 public class GroupView implements Serializable {
-    
-    private final static String[] manufacturers;
+
+    private static final String[] manufacturers;
     private List<Sale> sales;
-    
-    private final static String[] playerNames;
+    private Integer lastYearTotal;
+    private Integer thisYearTotal;
+
+    private static final String[] playerNames;
     private List<Integer> years;
     private List<Player> players;
-    
-    static {		
+
+    static {
 		manufacturers = new String[10];
 		manufacturers[0] = "Bamboo Watch";
 		manufacturers[1] = "Black Watch";
@@ -60,7 +61,7 @@ public class GroupView implements Serializable {
 		manufacturers[8] = "Gaming Set";
 		manufacturers[9] = "Gold Phone Case";
 	}
-        
+
     static {
 		playerNames = new String[10];
 		playerNames[0] = "Lionel Messi";
@@ -74,21 +75,21 @@ public class GroupView implements Serializable {
 		playerNames[8] = "Neymar Jr";
 		playerNames[9] = "Andres Iniesta";
 	}
-        
+
     @PostConstruct
     public void init() {
         sales = new ArrayList<>();
         for(int i = 0; i < 10; i++) {
             sales.add(new Sale(manufacturers[i], getRandomAmount(), getRandomAmount(), getRandomPercentage(), getRandomPercentage()));
         }
-        
+
         years = new ArrayList<>();
         years.add(2010);
         years.add(2011);
         years.add(2012);
         years.add(2013);
         years.add(2014);
-        
+
         players = new ArrayList<>();
         for(int i = 0; i < 10; i++) {
             players.add(new Player(playerNames[i], generateRandomGoalStatsData()));
@@ -106,31 +107,25 @@ public class GroupView implements Serializable {
     private int getRandomPercentage() {
 		return (int) (Math.random() * 100);
 	}
-    
-    public String getLastYearTotal() {
-        int total = 0;
 
-        for(Sale sale : getSales()) {
-            total += sale.getLastYearSale();
+    public Integer getLastYearTotal() {
+        if (lastYearTotal == null) {
+            lastYearTotal = sales.stream().mapToInt(Sale::getLastYearSale).sum();
         }
-
-        return new DecimalFormat("###,###.###").format(total);
+        return lastYearTotal;
     }
 
-    public String getThisYearTotal() {
-        int total = 0;
-
-        for(Sale sale : getSales()) {
-            total += sale.getThisYearSale();
+    public Integer getThisYearTotal() {
+        if (thisYearTotal == null) {
+            thisYearTotal = sales.stream().mapToInt(Sale::getThisYearSale).sum();
         }
-
-        return new DecimalFormat("###,###.###").format(total);
+        return thisYearTotal;
     }
 
     public List<Integer> getYears() {
         return years;
     }
-    
+
     public int getYearCount() {
         return years.size();
     }
@@ -144,10 +139,10 @@ public class GroupView implements Serializable {
         for (int i = 0; i < 5; i++) {
             stats.put(years.get(i), getRandomGoals());
         }
-        
+
         return stats;
     }
-    
+
     private int getRandomGoals() {
         return (int) (Math.random() * 50);
     }
