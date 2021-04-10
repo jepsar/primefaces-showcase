@@ -107,6 +107,15 @@
                         </f:facet>
                         <h:outputText value="#{product.quantity}"/>
                     </p:column>
+
+                    <p:column styleClass="p-text-right">
+                        <f:facet name="header">
+                            <h:outputText value="Price"/>
+                        </f:facet>
+                        <h:outputText value="#{product.price}">
+                            <f:convertNumber type="currency" />
+                        </h:outputText>
+                    </p:column>
                 </p:dataTable>
             </h:form>
         </div>
