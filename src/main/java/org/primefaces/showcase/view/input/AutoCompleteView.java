@@ -34,9 +34,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.showcase.domain.Country;
-import org.primefaces.showcase.domain.Theme;
 import org.primefaces.showcase.service.CountryService;
-import org.primefaces.showcase.service.ThemeService;
 
 @Named
 @RequestScoped
