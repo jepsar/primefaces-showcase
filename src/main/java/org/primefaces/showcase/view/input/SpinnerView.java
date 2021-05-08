@@ -29,14 +29,15 @@ import javax.inject.Named;
 @Named
 @RequestScoped
 public class SpinnerView {
-    
-    private int number1; 
-    private double number2; 
+
+    private int number1;
+    private double number2;
     private int number3;
-    private int number4;  
+    private int number4;
     private int number5;
     private int number6;
     private int number7;
+    private int number8;
 
     public int getNumber1() {
         return number1;
@@ -77,7 +78,7 @@ public class SpinnerView {
     public void setNumber5(int number5) {
         this.number5 = number5;
     }
-    
+
     public int getNumber6() {
         return number6;
     }
@@ -92,5 +93,13 @@ public class SpinnerView {
 
     public void setNumber7(int number7) {
         this.number7 = number7;
+    }
+
+    public int getNumber8() {
+        return number8;
+    }
+
+    public void setNumber8(int number8) {
+        this.number8 = number8;
     }
 }
