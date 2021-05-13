@@ -38,6 +38,7 @@ public class SpinnerView {
     private int number6;
     private int number7;
     private int number8;
+    private int number9;
 
     public int getNumber1() {
         return number1;
@@ -101,5 +102,13 @@ public class SpinnerView {
 
     public void setNumber8(int number8) {
         this.number8 = number8;
+    }
+
+    public int getNumber9() {
+        return number9;
+    }
+
+    public void setNumber9(int number9) {
+        this.number9 = number9;
     }
 }
