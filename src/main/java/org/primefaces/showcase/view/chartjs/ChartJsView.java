@@ -202,7 +202,7 @@ public class ChartJsView implements Serializable {
         dataSet.setFill(false);
         dataSet.setLabel("My First Dataset");
         dataSet.setBorderColor("rgb(75, 192, 192)");
-        dataSet.setLineTension(0.1);
+        dataSet.setTension(0.1);
         data.addChartDataSet(dataSet);
         
         List<String> labels = new ArrayList<>();
@@ -246,12 +246,19 @@ public class ChartJsView implements Serializable {
         data.addChartDataSet(dataSet);
         
         //Options
-        LineChartOptions options = new LineChartOptions();        
+        LineChartOptions options = new LineChartOptions();
         Title title = new Title();
         title.setDisplay(true);
         title.setText("Scatter Chart");
         options.setShowLines(false);
         options.setTitle(title);
+
+        CartesianScales cScales = new CartesianScales();
+        CartesianLinearAxes linearAxes = new CartesianLinearAxes();
+        linearAxes.setType("linear");
+        linearAxes.setPosition("bottom");
+        cScales.addXAxesData(linearAxes);
+        options.setScales(cScales);
         
         scatterModel.setOptions(options);
         scatterModel.setData(data);
@@ -272,6 +279,8 @@ public class ChartJsView implements Serializable {
         dataSet.setData(values);
         dataSet.setLabel("Left Dataset");
         dataSet.setYaxisID("left-y-axis");
+        dataSet.setFill(true);
+        dataSet.setTension(0.5);
         
         LineChartDataSet dataSet2 = new LineChartDataSet();
         List<Object> values2 = new ArrayList<>();
@@ -284,6 +293,8 @@ public class ChartJsView implements Serializable {
         dataSet2.setData(values2);
         dataSet2.setLabel("Right Dataset");
         dataSet2.setYaxisID("right-y-axis");
+        dataSet2.setFill(true);
+        dataSet2.setTension(0.5);
         
         data.addChartDataSet(dataSet);
         data.addChartDataSet(dataSet2);
@@ -781,7 +792,7 @@ public class ChartJsView implements Serializable {
         
         RadarChartDataSet radarDataSet = new RadarChartDataSet();
         radarDataSet.setLabel("P.Practitioner");
-        radarDataSet.setLineTension(0.1);
+        radarDataSet.setTension(0.1);
         radarDataSet.setBackgroundColor("rgba(102, 153, 204, 0.2)");
         radarDataSet.setBorderColor("rgba(102, 153, 204, 1)");
         radarDataSet.setPointBackgroundColor("rgba(102, 153, 204, 1)");
@@ -799,7 +810,7 @@ public class ChartJsView implements Serializable {
 
         RadarChartDataSet radarDataSet2 = new RadarChartDataSet();
         radarDataSet2.setLabel("P.Manager");
-        radarDataSet2.setLineTension(0.1);
+        radarDataSet2.setTension(0.1);
         radarDataSet2.setBackgroundColor("rgba(255, 204, 102, 0.2)");
         radarDataSet2.setBorderColor("rgba(255, 204, 102, 1)");
         radarDataSet2.setPointBackgroundColor("rgba(255, 204, 102, 1)");
