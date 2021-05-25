@@ -95,6 +95,26 @@ public class GraphicImageView {
         }
     }
     
+    public StreamedContent getChartWithoutBuffering() {
+        try {
+            return DefaultStreamedContent.builder()
+                    .contentType("image/png")
+                    .writer((os) -> {
+                        try {
+                            JFreeChart jfreechart = ChartFactory.createPieChart("Cities", createDataset(), true, true, false);
+                            ChartUtilities.writeChartAsPNG(os, jfreechart, 375, 300);
+                        }
+                        catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    })
+                    .build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
     public InputStream getChartAsStream() {
         return getChart().getStream();
     }
