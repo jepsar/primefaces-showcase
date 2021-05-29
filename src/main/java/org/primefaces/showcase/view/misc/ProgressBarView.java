@@ -42,20 +42,25 @@ public class ProgressBarView implements Serializable {
         return progress1;
     }
 
-    public Integer getProgress2() {
-        progress2 = updateProgress(progress2);
+    public synchronized Integer getProgress2() {
         return progress2;
     }
 
+    private synchronized setProgress2(Integer progress) {
+        this.progress2 = progress;
+    }
+
     public void longRunning() throws InterruptedException {
-        progress2 = 0;
-        while (progress2 == null || progress2 < 100) {
-            progress2 = updateProgress(progress2);
+        setProgress2(0);
+        Integer k = getProgress2();
+        while (k == null || k < 100) {
+            k = updateProgress(k);
+            setProgress2(k);
             Thread.sleep(500);
         }
     }
 
-    private Integer updateProgress(Integer progress) {
+    private static Integer updateProgress(Integer progress) {
         if(progress == null) {
             progress = 0;
         }
