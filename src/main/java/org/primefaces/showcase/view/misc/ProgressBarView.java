@@ -37,19 +37,6 @@ public class ProgressBarView implements Serializable {
     private Integer progress1;
     private Integer progress2;
 
-    public Integer getProgress1() {
-        progress1 = updateProgress(progress1);
-        return progress1;
-    }
-
-    public synchronized Integer getProgress2() {
-        return progress2;
-    }
-
-    private synchronized setProgress2(Integer progress) {
-        this.progress2 = progress;
-    }
-
     public void longRunning() throws InterruptedException {
         setProgress2(0);
         Integer k = getProgress2();
@@ -74,14 +61,6 @@ public class ProgressBarView implements Serializable {
         return progress;
     }
 
-    public void setProgress1(Integer progress1) {
-        this.progress1 = progress1;
-    }
-
-    public void setProgress2(Integer progress2) {
-        this.progress2 = progress2;
-    }
-
     public void onComplete() {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Progress Completed"));
     }
@@ -89,5 +68,22 @@ public class ProgressBarView implements Serializable {
     public void cancel() {
         progress1 = null;
         progress2 = null;
+    }
+    
+    public Integer getProgress1() {
+        progress1 = updateProgress(progress1);
+        return progress1;
+    }
+
+    public Integer getProgress2() {
+        return progress2;
+    }
+
+    public void setProgress1(Integer progress1) {
+        this.progress1 = progress1;
+    }
+
+    public void setProgress2(Integer progress2) {
+        this.progress2 = progress2;
     }
 }
