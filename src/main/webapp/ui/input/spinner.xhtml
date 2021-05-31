@@ -50,6 +50,29 @@
                         <p:spinner id="prefix" value="#{spinnerView.number4}" prefix="$" min="0"/>
                     </div>
                 </div>
+
+                <h5>Buttons</h5>
+                <div class="ui-fluid p-formgrid p-grid">
+                    <div class="p-field p-col-12 p-md-4">
+                        <p:outputLabel for="@next" value="Horizontal"/>
+                        <p:spinner id="horizontal" value="#{spinnerView.number8}" buttons="horizontal"
+                                   upIcon="pi pi-chevron-right" downIcon="pi pi-chevron-left"/>
+                    </div>
+
+                    <div class="p-field p-col-12 p-md-4">
+                        <p:outputLabel for="@next" value="Horizontal after"/>
+                        <p:spinner id="horizontalAfter" value="#{spinnerView.number9}" buttons="horizontal-after"
+                                   upButtonStyleClass="ui-button-success" downButtonStyleClass="ui-button-danger"/>
+                    </div>
+                </div>
+
+                <div class="ui-fluid p-formgrid p-grid">
+                    <div class="p-field p-col-12 p-md-1">
+                        <p:outputLabel for="@next" value="Vertical"/>
+                        <p:spinner id="vertical" value="#{spinnerView.number10}" buttons="vertical"
+                                   upButtonStyleClass="ui-button-secondary" downButtonStyleClass="ui-button-secondary"/>
+                    </div>
+                </div>
             </h:form>
         </div>
     </ui:define>
