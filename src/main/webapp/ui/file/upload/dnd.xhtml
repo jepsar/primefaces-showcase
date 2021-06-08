@@ -7,17 +7,8 @@
 
     <ui:define name="head">
         <style type="text/css">
-            body .ui-card.customDropZone {
-                background: #f8f8f8;
-            }
-            body .ui-card.customDropZone div {
-                opacity: .8;
-            }
-            body .ui-card.customDropZone.ui-state-drag {
-                background: #ddd;
-            }
-            body .ui-card.customDropZone.ui-state-drag div {
-                opacity: 1;
+            body .ui-inputfield.ui-state-drag {
+                background: #ffffd6;
             }
         </style>
     </ui:define>
@@ -43,16 +34,19 @@
                               update="messages" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
 
                 <h5>Drop Zone</h5>
-                <p:card id="customDropZone" styleClass="customDropZone p-mb-4"
-                        style="text-align:center;padding:2rem">
-                    <div style="font-size:400%" class="pi pi-cloud-upload"/>
-                    <div class="p-mt-2">
-                        Drop here to upload, or
-                        <p:link value="choose" onclick="PF('uploadDnd').show();return false"/>
+                <div class="ui-fluid">
+                    <div class="p-field">
+                        <p:inputTextarea id="customDropZone" widgetVar="textarea"
+                                         rows="5" value="#{fileUploadView.dropZoneText}"/>
+                        <small>
+                            Drop on the text area to upload, or
+                            <p:link value="choose" onclick="PF('uploadDnd').show();return false" style="font-size:inherit"/>.
+                        </small>
                     </div>
-                </p:card>
-                <p:fileUpload widgetVar="uploadDnd" listener="#{fileUploadView.handleFileUpload}" update="messages"
-                              sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" dropZone="customDropZone"/>
+                </div>
+                <p:fileUpload widgetVar="uploadDnd" listener="#{fileUploadView.handleFileUploadTextarea}"
+                              sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" dropZone="customDropZone"
+                              style="display: none"/>
             </h:form>
         </div>
     </ui:define>
